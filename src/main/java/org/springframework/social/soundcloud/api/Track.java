@@ -15,38 +15,51 @@
  */
 package org.springframework.social.soundcloud.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * See http://developers.soundcloud.com/docs/api/reference#tracks
  */
 public class Track extends TrackReference {
-	
+
 	private String title;
 	private String sharing;
+	@JsonProperty("embeddable_by")
 	private String embeddableBy;
+	@JsonProperty("purchase_url")
 	private String purchaseUrl;
+	@JsonProperty("artwork_url")
 	private String artworkUrl;
 	private String description;
 	private long duration;
+	@JsonProperty("playback_count")
+	private long playbackCount;
+	@JsonProperty("download_count")
+	private long downloadCount;
+	@JsonProperty("created_at")
+	private String createdAt;
+	@JsonProperty("favoritings_count")
+	private long favoriteCount;
 	private String genre;
-    private boolean streamable;
-    private boolean downloadable;
+	private boolean streamable;
+	private boolean downloadable;
 
-	public Track(String permalinkUrl,String title,String id)
-	{
-		super(id,permalinkUrl);
+	public Track(String permalinkUrl, String title, String id) {
+		super(id, permalinkUrl);
 		this.title = title;
 	}
 
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * public/private sharing
-	 * "public" or "private"
+	 * public/private sharing "public" or "private"
 	 */
 	public String getSharing() {
 		return sharing;
@@ -61,8 +74,7 @@ public class Track extends TrackReference {
 	}
 
 	/**
-	 * who can embed this track or playlist
-	 * "all", "me", or "none"
+	 * who can embed this track or playlist "all", "me", or "none"
 	 */
 	public String getEmbeddableBy() {
 		return embeddableBy;
@@ -120,24 +132,67 @@ public class Track extends TrackReference {
 		this.genre = genre;
 	}
 
-	public String getStreamUrl()
-	{
-		return "http://api.soundcloud.com/tracks/" + getId() + "/stream"; 
+	public String getStreamUrl() {
+		return "http://api.soundcloud.com/tracks/" + getId() + "/stream";
 	}
 
-  public boolean isStreamable() {
-    return streamable;
-  }
+	public boolean isStreamable() {
+		return streamable;
+	}
 
-  public void setStreamable(boolean streamable) {
-    this.streamable = streamable;
-  }
+	public void setStreamable(boolean streamable) {
+		this.streamable = streamable;
+	}
 
-  public boolean isDownloadable() {
-    return downloadable;
-  }
+	public boolean isDownloadable() {
+		return downloadable;
+	}
 
-  public void setDownloadable(boolean downloadable) {
-    this.downloadable = downloadable;
-  }
+	public void setDownloadable(boolean downloadable) {
+		this.downloadable = downloadable;
+	}
+
+	@Override
+	public String toString() {
+		return "Track [title=" + title + ", sharing=" + sharing
+				+ ", embeddableBy=" + embeddableBy + ", purchaseUrl="
+				+ purchaseUrl + ", artworkUrl=" + artworkUrl + ", description="
+				+ description + ", duration=" + duration + ", playbackCount="
+				+ playbackCount + ", downloadCount=" + downloadCount
+				+ ", createdAt=" + createdAt + ", genre=" + genre
+				+ ", streamable=" + streamable + ", downloadable="
+				+ downloadable + "]";
+	}
+
+	public long getPlaybackCount() {
+		return playbackCount;
+	}
+
+	public void setPlaybackCount(long playbackCount) {
+		this.playbackCount = playbackCount;
+	}
+
+	public long getDownloadCount() {
+		return downloadCount;
+	}
+
+	public void setDownloadCount(long downloadCount) {
+		this.downloadCount = downloadCount;
+	}
+
+	public String getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public long getFavoriteCount() {
+		return favoriteCount;
+	}
+
+	public void setFavoriteCount(long favoriteCount) {
+		this.favoriteCount = favoriteCount;
+	}
 }
