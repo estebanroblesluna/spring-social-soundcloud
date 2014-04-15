@@ -70,6 +70,11 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 	public Page<SoundCloudProfile> getFollowing() {
 		 return  getFollowing(null);
 	}
+	
+    @Override
+    public Page<SoundCloudProfile> getFollowers() {
+         return  getFollowers(null);
+    }
 
 	@Override
 	public Page<Track> getFavorites(Pageable pageable) {
@@ -104,6 +109,24 @@ public abstract class AbstractUserTemplate extends AbstractSoundCloudResourceOpe
 		 }
 		 
 	}
+	
+    @Override
+    public Page<SoundCloudProfile> getFollowers(Pageable pageable) {
+
+         SoundCloudProfile soundCloudProfile = getUserProfile();
+         List<SoundCloudProfile> profiles = restTemplate.getForObject(getApiResourceUrl("/followers",pageable), SoundCloudProfileList.class);   
+         if (pageable == null)
+         {
+             // TODO
+             //return new PageImpl<SoundCloudProfile>(profiles,new PageRequest(0,50),soundCloudProfile.getFavoritesCount());
+             return new PageImpl<SoundCloudProfile>(profiles);
+         }
+         else
+         {
+             return new PageImpl<SoundCloudProfile>(profiles,new PageRequest(pageable.getPageNumber(),pageable.getPageSize()),soundCloudProfile.getFavoritesCount());
+         }
+         
+    }
 	
 	@Override
 	public Page<Track> getTracks() {

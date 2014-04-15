@@ -42,7 +42,9 @@ public interface UserOperations {
 	public void favoriteTrack(long trackId);
 	
 	public void followUser(long userId);
-	
+
+    public Page<SoundCloudProfile> getFollowers();
+    public Page<SoundCloudProfile> getFollowers(Pageable pageable);
 
 
 }
