@@ -17,10 +17,13 @@ package org.springframework.social.soundcloud.api;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
 * Model class containing a SoundCloud user's profile information.
 * @author Michael Lavelle
 */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SoundCloudProfile implements Serializable {
 
 	private static final long serialVersionUID = 1L;

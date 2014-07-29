@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * See http://developers.soundcloud.com/docs/api/reference#tracks
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Track extends TrackReference {
 
 	private String title;

@@ -2,6 +2,8 @@ package org.springframework.social.soundcloud.api;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /*
  * Copyright 2011 the original author or authors.
  *
@@ -17,6 +19,7 @@ import java.util.List;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlaylistUpdate  {
 
 	private String title;

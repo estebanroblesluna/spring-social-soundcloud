@@ -17,6 +17,9 @@ package org.springframework.social.soundcloud.api;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Playlist  {
 
 	private String id;
